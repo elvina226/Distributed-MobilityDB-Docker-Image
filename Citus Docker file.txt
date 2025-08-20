@@ -1,0 +1,19 @@
+FROM pg16_with_mobilitydb:latest
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    git cmake build-essential \
+    clang llvm libzstd-dev libcurl4-openssl-dev \
+    postgresql-server-dev-16 \
+    libpq-dev libproj-dev libgeos-dev libjson-c-dev \
+    libssl-dev pkg-config \
+    liblz4-dev libkrb5-dev \
+    postgresql-16-postgis-3 && \
+    rm -rf /var/lib/apt/lists/*
+
+# Clone and build Citus
+RUN git clone --branch v12.1.3 https://github.com/citusdata/citus.git /usr/local/src/citus
+WORKDIR /usr/local/src/citus
+RUN ./configure --without-cdc
+RUN make -C src/backend/distributed all && make install
+RUN make install

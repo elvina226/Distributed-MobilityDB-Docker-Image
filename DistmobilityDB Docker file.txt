@@ -1,0 +1,49 @@
+FROM pg16_with_citus:latest
+
+# Install build tools, PostgreSQL dev packages, and PostGIS
+RUN apt-get update && apt-get install -y \
+    cmake build-essential \
+    clang llvm \
+    curl \
+    postgresql-server-dev-16 \
+    libpq-dev \
+    libproj-dev libgeos-dev libjson-c-dev \
+    libssl-dev pkg-config \
+    liblz4-dev libkrb5-dev \
+    postgresql-16-postgis-3
+
+# Copy all Citus headers including distributed/relation.h
+RUN cp -r /usr/local/src/citus/src/include/. /usr/include/postgresql/16/server/
+
+# Copy Citus headers into PostgreSQL's include path to resolve distributed_*.h
+RUN cp -r /usr/local/src/citus/src/include/* /usr/include/postgresql/16/server/
+
+# Copy manually downloaded PostGIS headers into postgis include path
+COPY headers/liblwgeom.h /usr/include/postgresql/16/server/postgis/liblwgeom.h
+COPY headers/lwinline.h /usr/include/postgresql/16/server/postgis/lwinline.h
+COPY headers/postgis_config.h /usr/include/postgresql/16/server/postgis/postgis_config.h
+
+# Add missing lwinline.h and postgis_config.h manually
+RUN echo '#pragma once' > /usr/include/postgresql/16/server/postgis/lwinline.h
+RUN echo '#pragma once\n#define POSTGIS_LIB_VERSION "3.4.0"' > /usr/include/postgresql/16/server/postgis_config.h
+
+# Add stub postgis_revision.h to resolve missing include
+RUN echo '#pragma once\n#define POSTGIS_SVN_REVISION "3.4.0"' > /usr/include/postgresql/16/server/postgis/postgis_revision.h
+
+# Copy DistributedMobilityDB source code into the container
+COPY DistributedMobilityDB-main/DistributedMobilityDB-main /usr/local/src/distmob
+
+# Build and install DistributedMobilityDB from source
+RUN cd /usr/local/src/distmob && mkdir build && cd build && \
+    cmake .. \
+      -DCMAKE_C_FLAGS="-I/usr/include/postgresql/16/server" \
+      -DCMAKE_EXE_LINKER_FLAGS="-Wl,--unresolved-symbols=ignore-in-object-files" \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=/usr && \
+    make -j$(nproc) && make install && \
+    # Move .so file to PostgreSQL's actual lib path
+    mv /usr/local/pgsql/lib/libdistributed_mobilitydb-1.0.so /usr/lib/postgresql/16/lib/distributed_mobilitydb.so && \
+    # Move control and SQL files to PostgreSQL's extension path
+    mv /usr/local/pgsql/share/extension/distributed_mobilitydb* /usr/share/postgresql/16/extension/ && \
+    # Clean up source code
+    cd / && rm -rf /usr/local/src/distmob
