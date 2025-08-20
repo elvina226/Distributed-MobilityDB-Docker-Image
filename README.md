@@ -1,2 +1,53 @@
-# Distributed-MobilityDB-Docker-Image
-This repository provides a Docker-based setup for PostgreSQL 16.9 with MobilityDB, Citus, and a patched version of DistributedMobilityDB. The project includes custom Docker images and cluster setup instructions, enabling distributed trajectory and spatiotemporal query processing in a reproducible environment.
+**Distributed MobilityDB Cluster for Spatiotemporal Maritime Data**
+**What the project does**
+
+This project provides a reproducible Docker-based environment for running PostgreSQL 16.9 with MobilityDB, Citus, and a patched version of DistributedMobilityDB. The environment was developed for a thesis on systems analyzing spatiotemporal data, with a specific focus on maritime analytics using the AIS Piraeus dataset.
+
+It includes:
+
+A Citus Docker image (PostgreSQL 16.9 + MobilityDB + Citus).
+
+A DistributedMobilityDB Docker image (PostgreSQL 16.9 + MobilityDB + Citus + patched DistributedMobilityDB).
+
+Cluster setup instructions to deploy coordinator and worker nodes, configure networking, authentication, and required extensions.
+
+**Why the project is useful**
+
+Spatiotemporal data analytics—especially for maritime datasets like AIS—is computationally demanding. This setup demonstrates how to:
+
+Scale queries with Citus (distributed PostgreSQL).
+
+Use MobilityDB for temporal and spatial queries on moving objects.
+
+Experiment with DistributedMobilityDB for distributed spatiotemporal workloads.
+
+It serves as a reference for researchers or practitioners interested in large-scale trajectory data analysis.
+
+**How users can get started**
+
+Build or pull the Docker images included in this repository.
+
+Follow the cluster setup guide to start a coordinator and worker containers using the provided network configuration.
+
+Enable the required extensions (citus, postgis, mobilitydb, distributed_mobilitydb) on all nodes.
+
+Load your dataset (e.g., AIS Piraeus dataset) and begin experimenting with distributed spatiotemporal queries.
+
+**For detailed steps, see the provided documentation:**
+
+Citus Docker Image.docx  
+
+DistributedMobilityDB Docker Image.docx  
+
+DistributedMobilityDB Cluster Setup.docx 
+
+**Where users can get help**
+
+Distributed MobilityDB documentation:https://github.com/mbakli/DistributedMobilityDB
+
+MobilityDB documentation: https://mobilitydb.com, https://github.com/MobilityDB/MobilityDB
+
+Citus documentation: https://www.citusdata.com, https://github.com/citusdata/citus
+
+PostgreSQL documentation: https://www.postgresql.org/docs
+
