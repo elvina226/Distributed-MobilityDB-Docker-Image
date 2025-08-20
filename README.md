@@ -5,11 +5,15 @@ This project provides a reproducible Docker-based environment for running Postgr
 
 It includes:
 
-A Citus Docker image (PostgreSQL 16.9 + MobilityDB + Citus).
+A Citus Docker file (PostgreSQL 16.9 + MobilityDB + Citus).
 
-A DistributedMobilityDB Docker image (PostgreSQL 16.9 + MobilityDB + Citus + patched DistributedMobilityDB).
+A Citus Docker Image Documentation
 
-Cluster setup instructions to deploy coordinator and worker nodes, configure networking, authentication, and required extensions.
+A DistributedMobilityDB Docker file (PostgreSQL 16.9 + MobilityDB + Citus + patched DistributedMobilityDB).
+
+A DistributedMobilityDB Docker Image Documentation
+
+A DistributedMobilityDB Cluster Setup Documentation (to deploy coordinator and worker nodes, configure networking, authentication, and required extensions).
 
 **Why the project is useful**
 
