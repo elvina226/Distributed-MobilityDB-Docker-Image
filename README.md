@@ -1,7 +1,8 @@
 **Distributed MobilityDB Cluster for Spatiotemporal Maritime Data**
+
 **What the project does**
 
-This project provides a reproducible Docker-based environment for running PostgreSQL 16.9 with MobilityDB, Citus, and a patched version of DistributedMobilityDB. The environment was developed for a thesis on systems analyzing spatiotemporal data, with a specific focus on maritime analytics using the AIS Piraeus dataset.
+This project provides a reproducible Docker-based environment for running PostgreSQL 16.9 with MobilityDB, Citus, and a patched version of DistributedMobilityDB. The environment was developed for the Master's thesis "A benchmark for maritime data processing and analytics" on systems analyzing spatiotemporal data, with a specific focus on maritime analytics using the AIS Piraeus dataset.
 
 It includes:
 
@@ -17,7 +18,7 @@ A DistributedMobilityDB Cluster Setup Documentation (to deploy coordinator and w
 
 **Why the project is useful**
 
-Spatiotemporal data analytics—especially for maritime datasets like AIS—is computationally demanding. This setup demonstrates how to:
+Spatiotemporal data analytics, especially for maritime datasets like AIS, is computationally demanding. This setup demonstrates how to:
 
 Scale queries with Citus (distributed PostgreSQL).
 
@@ -35,7 +36,7 @@ Follow the cluster setup guide to start a coordinator and worker containers usin
 
 Enable the required extensions (citus, postgis, mobilitydb, distributed_mobilitydb) on all nodes.
 
-Load your dataset (e.g., AIS Piraeus dataset) and begin experimenting with distributed spatiotemporal queries.
+Load your dataset (e.g. AIS Piraeus dataset) and begin experimenting with distributed spatiotemporal queries.
 
 **For detailed steps, see the provided documentation:**
 
@@ -45,7 +46,7 @@ DistributedMobilityDB Docker Image.docx
 
 DistributedMobilityDB Cluster Setup.docx 
 
-**Where users can get help**
+**Where users can get more information**
 
 Distributed MobilityDB documentation:https://github.com/mbakli/DistributedMobilityDB
 
