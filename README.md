@@ -16,11 +16,13 @@ A DistributedMobilityDB Docker Image Documentation
 
 A DistributedMobilityDB Cluster Setup Documentation (to deploy coordinator and worker nodes, configure networking, authentication, and required extensions).
 
+Visualization of Images and Containers.
+
 SQL files (Database setup, schema definitions and benchmark queries).
 
 Python script (Cleaning and preprocessing of the AIS dataset before loading it into the database).
 
-R script (Creating Figures summarizing runtime performance for the benchmark queries).
+R script (Creating barplots summarizing runtime performance for the queries).
 
 **Why the project is useful**
 
@@ -36,7 +38,7 @@ Use different types of queries to test the perfomance of the systems.
 
 It serves as a reference for researchers or practitioners interested in large-scale trajectory data analysis.
 
-**How users can get started**
+**How users can get started in Distributed MobilityDB**
 
 Build or pull the Docker images included in this repository.
 
@@ -44,13 +46,11 @@ Follow the cluster setup guide to start a coordinator and worker containers usin
 
 Enable the required extensions (citus, postgis, mobilitydb, distributed_mobilitydb) on all nodes.
 
-Load your dataset (e.g. AIS Piraeus dataset) and begin experimenting with distributed spatiotemporal queries.
+Use the Python script to clean and preprocess raw AIS data.
 
 Run the provided SQL files to initialize the schema and load queries.
 
-Use the Python scripts to clean and preprocess raw AIS data.
-
-Generate runtime comparison plots with the R scripts.
+Optional: Generate runtime comparison plots with the R scripts.
 
 **For detailed steps, see the provided documentation:**
 
@@ -61,6 +61,8 @@ DistributedMobilityDB Docker Image.docx
 DistributedMobilityDB Cluster Setup.docx 
 
 **Where users can get more information**
+
+Dataset: https://doi.org/10.1016/j.dib.2021.107782
 
 Distributed MobilityDB documentation:https://github.com/mbakli/DistributedMobilityDB
 
