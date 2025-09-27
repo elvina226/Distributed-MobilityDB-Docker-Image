@@ -560,7 +560,7 @@ JOIN weather_data.noaa_weather w
   AND k.datetime BETWEEN w.timestamp::timestamp - INTERVAL '30 minutes'
                    AND w.timestamp::timestamp + INTERVAL '30 minutes'
 WHERE w.GUST > 20 AND k.speed < 5 
-AND k.datetime BETWEEN '2018-05-01 00:00:00' AND '2019-05-31 23:59:59'
+AND k.datetime BETWEEN '2018-05-01 00:00:00' AND '2019-04-31 23:59:59'
 ORDER BY k.datetime;
 ------------------------------------------- Q11 Semantics -------------------------------------------------------------
 -- STOP_START annotations
@@ -592,6 +592,7 @@ AND k.datetime BETWEEN s.datetime - INTERVAL '30 minutes'
 AND s.datetime + INTERVAL '30 minutes'
 AND k.geom IS NOT NULL
 GROUP BY s.vessel_id, s.datetime;
+
 
 
 
