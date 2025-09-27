@@ -800,7 +800,7 @@ CROSS JOIN LATERAL unnest(
       v.traj,
       ST_Buffer(w.geom, 7000)))) AS inst
 WHERE w.GUST > 30 AND getvalue(speed(inst)) < 5
-AND w.timestamp BETWEEN '2018-05-01 00:00:00' AND '2019-05-31 23:59:59'
+AND w.timestamp BETWEEN '2018-05-01 00:00:00' AND '2019-04-31 23:59:59'
 ORDER BY gettimestamp(inst);
 ------------------------------------------- Q11 Semantics -------------------------------------------------------------
 -- STOP_START annotations
@@ -845,6 +845,7 @@ SELECT
   trajectory(sliced_trajectory) AS trail_geom
 FROM vessel_trajectory_slices
 WHERE sliced_trajectory IS NOT NULL;
+
 
 
 
