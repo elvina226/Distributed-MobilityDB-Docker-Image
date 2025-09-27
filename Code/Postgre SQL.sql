@@ -559,7 +559,7 @@ JOIN weather_data.noaa_weather w
   ON ST_DWithin(k.geom::geography, w.geom::geography, 7000)
   AND k.datetime BETWEEN w.timestamp::timestamp - INTERVAL '30 minutes'
                    AND w.timestamp::timestamp + INTERVAL '30 minutes'
-WHERE w.GUST > 20 AND k.speed < 5 
+WHERE w.GUST > 30 AND k.speed < 5 
 AND k.datetime BETWEEN '2018-05-01 00:00:00' AND '2019-04-31 23:59:59'
 ORDER BY k.datetime;
 ------------------------------------------- Q11 Semantics -------------------------------------------------------------
@@ -592,6 +592,7 @@ AND k.datetime BETWEEN s.datetime - INTERVAL '30 minutes'
 AND s.datetime + INTERVAL '30 minutes'
 AND k.geom IS NOT NULL
 GROUP BY s.vessel_id, s.datetime;
+
 
 
 
