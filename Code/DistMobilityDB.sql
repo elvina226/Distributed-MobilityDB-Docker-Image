@@ -820,7 +820,7 @@ WITH insts AS (
         ST_Buffer(w.geom, 7000)))
   ) AS inst
   WHERE w.GUST > 30
- AND w.timestamp BETWEEN '2018-05-01 00:00:00' AND '2018-10-31 23:59:59')
+ AND w.timestamp BETWEEN '2018-05-01 00:00:00' AND '2019-04-31 23:59:59')
 SELECT 
   vessel_id,
   datetime,
@@ -874,6 +874,7 @@ SELECT
   trajectory(sliced_trajectory) AS trail_geom
 FROM vessel_trajectory_slices
 WHERE sliced_trajectory IS NOT NULL;
+
 
 
 
